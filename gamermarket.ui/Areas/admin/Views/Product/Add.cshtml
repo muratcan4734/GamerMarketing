@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@model IEnumerable<GamerMarket.Model.Model.Entities.Category>
+
+
+<form action="/Admin/Product/Add" method="post" enctype="multipart/form-data">
+
+    <div class="form-group">
+        <label for="Name">Ürün Adı</label>
+        <input type="text" name="Name" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="Price">Ürün Fiyatı</label>
+        <input type="number" name="Price" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="UnitsInStock">Ürün Stok Miktarı</label>
+        <input type="number" name="UnitsInStock" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="Quantity">Ürün Birimi</label>
+        <input type="text" name="Quantity" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="CategoryID">Ürün Kategorisi</label>
+        <select name="CategoryID" class="form-control">
+            @foreach (var item in Model)
+            {
+                <option value="@item.ID">@item.Name</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="Image">Ürün Görseli Seçiniz</label>
+        <input type="file" name="Image" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="DisplayOnWeb">Webde Göster</label>
+        <input type="checkbox" data-val="true" value="true" name="DisplayOnWeb" class="checkbox" />
+    </div>
+
+    <div class="form-group">
+        <label for="DisplayOnMobile">Mobilde Göster</label>
+        <input type="checkbox" data-val="true" value="true" name="DisplayOnMobile" class="checkbox" />
+    </div>
+
+    <input type="submit" value="Ekle" class="form-control btn btn-primary" />
+
+</form>

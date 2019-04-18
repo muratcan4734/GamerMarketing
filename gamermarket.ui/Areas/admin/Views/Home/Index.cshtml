@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    Html.RenderAction("OrderCount", "Report");
+}
+
+@{
+    Html.RenderAction("ProductCount", "Report");
+}
+
+@{
+    Html.RenderAction("CategoryCount", "Report");
+}
+
+@{
+    Html.RenderAction("MemberCount", "Report");
+}
+

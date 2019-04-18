@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@model GamerMarket.Service.Service.TransferObjects.VM.ProductUpdateVM
+
+
+
+@section TOP_STYLE_SECTION{
+    <style>
+        .form-control.disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+        }
+    </style>
+}
+
+<form action="/Admin/Product/Update" method="post" enctype="multipart/form-data">
+
+
+
+    <div class="form-group">
+        <img class="img-rounded" src="@Model.Product.ImagePath" height="100"/>
+    </div>
+    <div class="form-group">
+        <label for="ID">Ürün ID</label>
+        <input type="text" readonly name="ID" value="@Model.Product.ID" class="form-control disabled" />
+    </div>
+
+    <div class="form-group">
+        <label for="Name">Ürün Adı</label>
+        <input type="text" name="Name" value="@Model.Product.Name" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="Price">Ürün Fiyatı</label>
+        <input type="text" name="Price" value="@Model.Product.Price" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="UnitsInStock">Ürün Stok Miktarı</label>
+        <input type="number" name="UnitsInStock" value="@Model.Product.UnitsInStock" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="Quantity">Ürün Birimi</label>
+        <input type="text" name="Quantity" value="@Model.Product.Quantity" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="CategoryID">Ürün Kategorisi</label>
+        <select name="CategoryID" class="form-control">
+            @foreach (var item in Model.Categories)
+            {
+                <option value="@item.ID" @(Model.Product.CategoryID==item.ID ? "selected=\"selected\"":"") >@item.Name</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="Image">Ürün Görseli Seçiniz</label>
+        <input type="file" name="Image" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="DisplayOnWeb">Webde Göster</label>
+        <input type="checkbox" data-val="true" value="true" checked="@Model.Product.DisplayOnWeb" name="DisplayOnWeb" class="checkbox" />
+    </div>
+
+    <div class="form-group">
+        <label for="DisplayOnMobile">Mobilde Göster</label>
+        <input type="checkbox" data-val="true" value="true" checked="@Model.Product.DisplayOnMobile" name="DisplayOnMobile" class="checkbox" />
+    </div>
+
+
+
+    <input type="submit" value="Güncelle" class="form-control btn btn-primary" />
+
+</form>
+

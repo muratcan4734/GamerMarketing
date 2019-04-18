@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@model IEnumerable<GamerMarket.Model.Model.Entities.Product>
+
+<div class="col-lg-12">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Adı</th>
+                <th>Fiyatı</th>
+                <th>Stok Miktarı</th>
+                <th>Birimi</th>
+                <th>Kategori Adı</th>
+                <th>Ürün Görseli</th>
+                <th colspan="2">Güncelle / Sil</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Price</td>
+                    <td>@item.UnitsInStock</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.Category.Name</td>
+                    <td>
+                        <img src="@item.ImagePath" style="display:block" height="30" />
+                    </td>
+                    <td>
+                        <a href="/Admin/Product/Update/@item.ID">Güncelle</a>
+                        /
+                        <a href="/Admin/Product/Delete/@item.ID">Sil</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

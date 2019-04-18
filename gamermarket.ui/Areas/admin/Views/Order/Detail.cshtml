@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+@model List<GamerMarket.Model.Model.Entities.OrderDetail>
+
+@{ 
+    decimal toplamTutar = 0;
+}
+
+<div class="col-lg-12">
+    <span>Sipariş Kodu: @Model[0].OrderID</span>&nbsp;
+    <a href="@Url.Action("ConfirmOrder","Order",new { area="Admin",id=Model[0].OrderID})">Siparişi Onayla <i class="fa fa-check"></i></a>&nbsp;
+    <a href="@Url.Action("RejectOrder","Order",new { area="Admin",id=Model[0].OrderID})">Siparişi Reddet <i class="fa fa-circle"></i></a>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Ürün Görseli</th>
+                <th>Ürün Adı</th>
+                <th>Ürün Birim Fiyatı</th>
+                <th>Ürün Miktarı</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="@item.Product.ImagePath" style="display:block" height="40" alt="Alternate Text" />
+                    </td>
+                    <td>@item.Product.Name</td>
+                    <td>@item.UnitPrice</td>
+                    <td>@item.Quantity</td>
+                </tr>
+                toplamTutar += (decimal)(item.Quantity * item.UnitPrice);
+            }
+        </tbody>
+    </table>
+    <span>Sipariş Toplam Tutarı : @toplamTutar <i class="fa fa-dollar"></i></span>
+</div>

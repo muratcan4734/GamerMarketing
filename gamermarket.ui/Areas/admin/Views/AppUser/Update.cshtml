@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@model GamerMarket.Model.Model.Entities.AppUser
+
+
+<form action="/Admin/AppUser/Update" method="post" enctype="multipart/form-data">
+
+    <div class="form-group">
+        <img class="img-rounded" src="@Model.ImagePath" height="150" />
+    </div>
+
+    <div class="form-group">
+        <label for="Image">Fotoğraf Seçiniz</label>
+        <input type="file" name="Image" class="form-control" />
+    </div>
+
+
+    <div class="form-group">
+        <label for="Name">Adı</label>
+        <input type="text" name="Name" value="@Model.Name" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="LastName">Soyadı</label>
+        <input type="text" name="LastName" value="@Model.LastName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="UserName">Kullanıcı Adı</label>
+        <input type="text" name="UserName" value="@Model.UserName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="Email">Email</label>
+        <input type="email" name="Email" value="@Model.Email" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="Password">Şifre</label>
+        <input type="text" name="Password" value="@Model.Password" class="form-control" />
+    </div>
+
+    @Html.HiddenFor(x => x.ID)
+
+    <div class="form-group">
+        <label for="UserRole">Rolü: @Model.Role.ToString()</label>
+        <select name="Role" class="form-control">
+            @foreach (var item in Enum.GetNames(typeof(GamerMarket.Model.Model.Entities.UserRole)))
+            {
+                <option value="@item" @(Model.Role.ToString()==item ? "selected=\"selected\"":"")>@item</option>
+            }
+        </select>
+    </div>
+
+
+
+
+    <input type="submit" value="Güncelle" class="form-control btn btn-primary" />
+
+</form>
+
+
